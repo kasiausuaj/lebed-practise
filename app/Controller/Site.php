@@ -7,6 +7,7 @@ use Src\View;
 use Src\Request;
 use Src\Auth\Auth;
 use Model\User;
+use Model\role;
 
 class Site
 {
@@ -22,10 +23,11 @@ class Site
    }
    public function signup(Request $request): string
 {
-   if ($request->method === 'POST' && User::create($request->all())) {
-       app()->route->redirect('/go');
+    $roles = role::all();
+    if ($request->method === 'POST' && User::create($request->all())) {
+       app()->route->redirect('/hello');
    }
-   return new View('site.signup');
+   return new View('site.signup', ['roles' => $roles]);
 }
 public function login(Request $request): string
 {
