@@ -78,6 +78,9 @@
         button:hover {
             background-color: #0056b3;
         }
+        h2{
+            text-align:center;
+        }
         
     </style>
    <nav class="nav">

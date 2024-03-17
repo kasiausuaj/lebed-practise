@@ -7,8 +7,8 @@
 if (!app()->auth::check()):
    ?>
    <form method="post">
-       <label>Логин <input type="text" name="login"></label>
-       <label>Пароль <input type="password" name="password"></label>
+       <label><input type="text" name="login"placeholder="Логин"></label>
+       <label><input type="password" name="password"placeholder="Пароль"></label>
        <button>Войти</button>
    </form>
 <?php endif;
