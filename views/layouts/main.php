@@ -9,8 +9,79 @@
 </head>
 <body>
 <header>
-   <nav>
-       <a href="<?= app()->route->getUrl('/hello') ?>">Главная</a>
+    <style>
+       .nav {
+    background-color: #333;
+    overflow: hidden;
+    height: 50px;
+}
+
+.nav a {
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    
+}
+
+.nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.nav a.active {
+    background-color: #666;
+}
+
+.main-content {
+    padding: 20px;
+    font-size: 1.2em;
+}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+
+            align-items: center;
+            height: 500px;
+        }
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 500px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input {
+            padding: 8px;
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+    </style>
+   <nav class="nav">
+       <a href ="<?= app()->route->getUrl('/hello') ?>">Главная</a>
        <?php
        if (!app()->auth::check()):
            ?>

@@ -48,8 +48,12 @@ public function logout(): void
    Auth::logout();
    app()->route->redirect('/hello');
 }
-
-
-   
-
+// public function addemployees(Request $request): string
+// {
+//     $ = role::all();
+//     if ($request->method === 'POST' && User::create($request->all())) {
+//        app()->route->redirect('/hello');
+//    }
+//    return new View('site.signup', ['roles' => $roles]);
+// }
 }
