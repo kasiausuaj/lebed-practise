@@ -11,9 +11,10 @@
 <header>
     <style>
        .nav {
-    background-color: #333;
+    background-color: black;
     overflow: hidden;
     height: 50px;
+    display: flex;
 }
 
 .nav a {
@@ -42,7 +43,7 @@
             background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-
+            background-color:#323232;
             align-items: center;
             height: 500px;
         }
@@ -69,7 +70,7 @@
         }
         button {
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: black;
             color: #fff;
             border: none;
             border-radius: 4px;
@@ -79,7 +80,8 @@
             background-color: #0056b3;
         }
         h2{
-            text-align:center;
+            text-align: center;
+            color:white;
         }
         
     </style>
@@ -90,10 +92,13 @@
            ?>
            <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
            <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
+           
        <?php
        else:
            ?>
            <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->name ?>)</a>
+           <a href="<?= app()->route->getUrl('/employees') ?>">Создать сотрудника</a>
+           <a href="<?= app()->route->getUrl('/subunit') ?>">Создать подразделение</a>
        <?php
        endif;
        ?>

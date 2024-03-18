@@ -8,6 +8,8 @@ use Src\Request;
 use Src\Auth\Auth;
 use Model\User;
 use Model\role;
+use Model\Employees;
+use Model\Subunit;
 
 class Site
 {
@@ -48,12 +50,24 @@ public function logout(): void
    Auth::logout();
    app()->route->redirect('/hello');
 }
-// public function addemployees(Request $request): string
-// {
-//     $ = role::all();
-//     if ($request->method === 'POST' && User::create($request->all())) {
-//        app()->route->redirect('/hello');
-//    }
-//    return new View('site.signup', ['roles' => $roles]);
-// }
+public function employees(Request $request): string
+{
+    if($request->method === 'POST' && Employees::create($request->all())){
+        app()->route->redirect('/employees');
+    }
+    $users = User::all();
+    $roles = role::all();
+    $subunits = Subunit::all();
+    return new View('site.employees', ['subunits' => $subunits, 'users' => $users, 'roles' => $roles]);
+    }
+public function subunit(Request $request): string
+{
+$subunits = Subunit::all();
+    if ($request->method === 'POST' && Subunit::create($request->all())) {
+        app()->route->redirect('/hello');
+    }
+return new View('site.subunit', ['subunits' => $subunits]);
+}
+
+
 }

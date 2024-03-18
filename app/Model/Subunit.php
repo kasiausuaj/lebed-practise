@@ -5,21 +5,12 @@ namespace Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Employees extends Model
+class Subunit extends Model
 {
-    protected $table = 'employees';
+    protected $table = 'Subunit';
     protected $fillable = [
-        'Surname',
         'Name',
-        'Patronym',
-        'Gender',
-        'Date_of_Birth',
-        'Address',
-        'Position',
-        'Subunit_ID',
-        'Role',
-        'Users_ID',
-
+        'Description',
     ];
  
    use HasFactory;
