@@ -1,14 +1,17 @@
 <h2>Добавление нового сотрудника</h2>
 <h3><?= $message ?? ''; ?></h3>
 <form method="post">
-   <label><input type="text" name="surname"placeholder="Фамилия"></label>
-   <label><input type="text" name="name"placeholder="Имя"></label>
-   <label><input type="text" name="patronym" placeholder="Отчество"></label>
-   <label><input type="text" name="gender"placeholder="Пол"></label>
-   <!-- <label><input type="date" name="Date_of_Birth"placeholder="Дата рождения"></label>
-   <label><input type="text" name="login"placeholder="Адрес"></label> -->
-   <label><input type="text" name="login"placeholder="Логин"></label>
-   <label><input type="password" name="password"placeholder="Пароль"></label>
+   <label><input type="text" name="Surname"placeholder="Фамилия"></label>
+   <label><input type="text" name="Name"placeholder="Имя"></label>
+   <label><input type="text" name="Patronym" placeholder="Отчество"></label>
+   <label class="gender">Пол<br><select name="Gender" id="gender">
+      <option value="man">Мужчина</option>
+      <option value="woman">Женщина</option>
+   </select></label>
+   <label><input type="date" name="Date_of_Birth"placeholder="Дата рождения"></label>
+   <label><input type="text" name="Address"placeholder="Адрес"></label>
+   <label><input type="text" name="Login"placeholder="Логин"></label>
+   <label><input type="password" name="Password"placeholder="Пароль"></label>
    
    <label class="subunit">
       <select name="Subunit_ID">

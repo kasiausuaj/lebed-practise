@@ -68,6 +68,10 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        .gender{
+            display: flex;
+            gap: 15px;
+        }
         button {
             padding: 10px 20px;
             background-color: black;
