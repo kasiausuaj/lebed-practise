@@ -24,7 +24,6 @@
     text-decoration: none;
     
 }
-
 .nav a:hover {
     background-color: #ddd;
     color: black;
@@ -51,9 +50,10 @@
             background-color: #fff;
             border-radius: 8px;
             padding: 20px;
+            height: 530px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 500px;
+            width: 600px;
             margin: 0 auto;
         }
         label {
@@ -87,6 +87,13 @@
             text-align: center;
             color:white;
         }
+        .column{
+            margin: 0 auto;
+        }
+        .btn_btn-primary{
+            margin-top:10px;
+        }
+       
         
     </style>
    <nav class="nav">
@@ -100,9 +107,13 @@
        <?php
        else:
            ?>
-           <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->name ?>)</a>
+           
            <a href="<?= app()->route->getUrl('/employees') ?>">Создать сотрудника</a>
            <a href="<?= app()->route->getUrl('/subunit') ?>">Создать подразделение</a>
+           <a href="<?= app()->route->getUrl('/assign_an_employee') ?>">Прикрепить сотрудника</a>
+           <a href="<?= app()->route->getUrl('/calculate') ?>">Подсчет среднего возраста</a>
+           <a href="<?= app()->route->getUrl('/subunit_sel') ?>">Выбор по подразделениям</a>
+           <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->name ?>)</a>
        <?php
        endif;
        ?>

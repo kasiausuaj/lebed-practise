@@ -30,17 +30,8 @@
             <option value="<?= $role->getId() ?>"><?= $role->name ?></option>
          <?php endforeach; ?>
       </select>
-      
-   </label>
-   <label class="subunit">
-      <select name="Users_ID">
-         <option value="">Выберите пользователя</option>
-         <?php foreach($users as $user): ?>
-            <option value="<?= $user->getId() ?>"><?= $user->name ?></option>
-         <?php endforeach; ?>
-      </select>
-      
-   </label>
+      </label>
+
    
    <button>Добавить сотрудника</button>
    
