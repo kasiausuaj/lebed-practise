@@ -1,16 +1,39 @@
-<h2>Выбор по подразделениям</h2>
-<form method="post" class='d-flex justify-content-center'>
-   <div class='border border-5 border-dark center rounded-3'>
-   <div>
-      <div class="column">
-         <div>
-         <select name="Subunit_ID">
-         <option value="">Выберите подразделение</option>
-         <?php foreach($subunits as $subunit): ?>
-            <option value="<?= $subunit->getId() ?>"><?= $subunit->name ?></option>
-         <?php endforeach; ?>
-      </select>
-</div>
-</div>
-</div>
-</form>
+<?php 
+/**
+ * @var array $subdivisions 
+ */
+?>
+
+<h2>Выбор подразделения</h2>
+<form method="get" class='d-flex justify-content-center'>
+    
+   <div class='sel'>
+
+      <div class="sel">
+         <div class="sel">
+
+            <label>Подразделение</label>
+            <select name="subdivision">
+               <?php if (isset($subdivisions)): ?>
+                  <?php foreach ($subdivisions as $subdivision): ?>
+                     <option value="<?=$subdivision->ID; ?>"><?=$subdivision->name; ?></option>
+                  <?php endforeach ?>
+               <?php endif; ?>
+               
+            </select>
+
+            <?php if (isset($employees)): ?>
+               <?php foreach($employees as $employee): ?>
+                  <div><?=$employee->Name; ?></div>
+               <?php endforeach; ?>
+            <?php endif; ?>
+               
+
+
+            <button id="subunit_button">Выбор</button>
+            <br>
+
+         </div>
+      </div>
+   </div>
+</form> 

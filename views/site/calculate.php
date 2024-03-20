@@ -7,11 +7,11 @@
 <h2>Подсчет среднего возраста</h2>
 <form method="get" class='d-flex justify-content-center'>
     
-   <div class='border border-5 border-dark center rounded-3'>
+   <div>
     
       <div>
-         <div class="column">
-
+         <div class="calculate">
+         
             <label>Подразделение</label>
             <select name="subdivision">
                <?php if (isset($subdivisions)): ?>
@@ -22,15 +22,13 @@
                
             </select>
 
-            <?php if (isset($employess)): ?>
-               <?php foreach($employess as $employee): ?>
+            <?php if (isset($employees)): ?>
+               <?php foreach($employees as $employee): ?>
                   <div><?=$employee->Name; ?></div>
                <?php endforeach; ?>
             <?php endif; ?>
-               
+    </div>
             <button id="subunit_button">Выбор</button>
-            <br>
-            <strong>Средний возраст:</strong>
 
          </div>
       </div>

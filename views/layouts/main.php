@@ -9,7 +9,102 @@
 </head>
 <body>
 <header>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+}
 
+header a{
+    text-decoration:none;
+    color:white;
+    margin:20px;
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+}
+form {
+    margin: 20px auto;
+    padding: 30px;
+    max-width: 500px; 
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+.age{
+    height: 30px;
+}
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="age"]
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.center {
+    text-align: center;
+}
+
+.border {
+    border: 2px solid #333;
+    padding: 15px;
+    border-radius: 8px;
+}
+.assign{
+    display: flex;
+    flex-direction:column;
+    gap:20px;
+}
+.calculate{
+    display: flex;
+    flex-direction:column;
+    gap:5px;
+}
+.rounded-3 {
+    border-radius: 3px;
+}
+    </style>
    <nav class="nav">
        <a href ="<?= app()->route->getUrl('/hello') ?>">Главная</a>
        

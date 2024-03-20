@@ -140,12 +140,12 @@ class Site
         $subunits = Subunit::all();
 
         if (isset($request->all()["subdivision"])) {
-            $employess = Employees::where("Subunit_ID", $request->all()["subdivision"])->get();
+            $employees = Employees::where("Subunit_ID", $request->all()["subdivision"])->get();
 
             return new View('site.calculate', [
                 'message' => 'hello working',
                 "subdivisions" => $subunits,
-                "employess" => $employess
+                "employees" => $employees
             ]);
         }
 
@@ -159,14 +159,19 @@ class Site
         $subunits = Subunit::all();
 
         if (isset($request->all()["subdivision"])) {
-            $employess = Employees::where("Subunit_ID", $request->all()["subdivision"])->get();
+            $employees = Employees::where("Subunit_ID", $request->all()["subdivision"])->get();
 
             return new View('site.subunit_sel', [
                 'message' => 'hello working',
                 "subdivisions" => $subunits,
-                "employess" => $employess
+                "employees" => $employees
             ]);
         }
+
+        return new View('site.subunit_sel', [
+            'message' => 'hello working',
+            "subdivisions" => $subunits,
+        ]);
     }
 
 }
