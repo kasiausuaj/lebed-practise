@@ -7,7 +7,7 @@ use Src\View;
 use Src\Request;
 use Src\Auth\Auth;
 use Model\User;
-use Model\role;
+use Model\Role;
 use Model\Employees;
 use Model\Subunit;
 
@@ -23,95 +23,150 @@ class Site
    {
        return new View('site.hello', ['message' => 'hello working']);
    }
+   
    public function signup(Request $request): string
-{
-    $roles = role::all();
-    if ($request->method === 'POST' && User::create($request->all())) {
-       app()->route->redirect('/hello');
-   }
-   return new View('site.signup', ['roles' => $roles]);
-}
-public function login(Request $request): string
-{
-   //Если просто обращение к странице, то отобразить форму
-   if ($request->method === 'GET') {
-       return new View('site.login');
-   }
-   //Если удалось аутентифицировать пользователя, то редирект
-   if (Auth::attempt($request->all())) {
-       app()->route->redirect('/hello');
-   }
-   //Если аутентификация не удалась, то сообщение об ошибке
-   return new View('site.login', ['message' => 'Неправильные логин или пароль']);
-}
+    {
+        $roles = role::all();
+        if ($request->method === 'POST' && User::create($request->all())) {
+            app()->route->redirect('/hello');
+        }
 
-public function logout(): void
-{
-   Auth::logout();
-   app()->route->redirect('/hello');
-}
-public function employees(Request $request): string
-{
-    if($request->method === 'POST' && Employees::create($request->all())){
-        app()->route->redirect('/employees');
+        return new View('site.signup', ['roles' => $roles]);
     }
-    $users = User::all();
-    $roles = role::all();
-    $subunits = Subunit::all();
-    return new View('site.employees', ['subunits' => $subunits, 'users' => $users, 'roles' => $roles]);
+
+    public function login(Request $request): string
+    {
+        //Если просто обращение к странице, то отобразить форму
+        if ($request->method === 'GET') {
+            return new View('site.login');
+        }
+        //Если удалось аутентифицировать пользователя, то редирект
+        if (Auth::attempt($request->all())) {
+            app()->route->redirect('/hello');
+        }
+        //Если аутентификация не удалась, то сообщение об ошибке
+        return new View('site.login', ['message' => 'Неправильные логин или пароль']);
     }
-public function subunit(Request $request): string
-{
-$subunits = Subunit::all();
-    if ($request->method === 'POST' && Subunit::create($request->all())) {
+
+    public function logout(): void
+    {
+        Auth::logout();
         app()->route->redirect('/hello');
     }
-return new View('site.subunit', ['subunits' => $subunits]);
-}
-public function subunit_sel(Request $request): string
-{
-   //Если просто обращение к странице, то отобразить форму
-   if ($request->method === 'GET') {
-       return new View('site.subunit_sel');
-   }
 
-   //Если удалось аутентифицировать пользователя, то редирект
-   if (Auth::attempt($request->all())) {
-       app()->route->redirect('/hello');
-   }
-   //Если аутентификация не удалась, то сообщение об ошибке
-   return new View('site.hello', ['message' => 'hello working']);
-}
+    public function employees(Request $request): string
+    {
+        if($request->method === 'POST'){
+            $properties = [
+                "login" => $request->all()["login"],
+                "password" => $request->all()["password"],
+                "role" => 2
+            ];
 
-public function assign_an_employee(Request $request): string
-{
-   //Если просто обращение к странице, то отобразить форму
-   if ($request->method === 'GET') {
-       return new View('site.assign_an_employee');
-   }
+            if (User::create($properties)) {
+                app()->route->redirect('/employees');
+            }
+        }
+        
+        $users = User::all();
+        $roles = role::all();
+        $subunits = Subunit::all();
 
-   //Если удалось аутентифицировать пользователя, то редирект
-   if (Auth::attempt($request->all())) {
-       app()->route->redirect('/hello');
-   }
-   //Если аутентификация не удалась, то сообщение об ошибке
-   return new View('site.hello', ['message' => 'hello working']);
-}
-   
+        return new View('site.employees', [
+            'subunits' => $subunits, 
+            'users' => $users, 
+            'roles' => $roles
+        ]);
+    }
 
-public function calculate(Request $request): string
-{
-   //Если просто обращение к странице, то отобразить форму
-   if ($request->method === 'GET') {
-       return new View('site.calculate');
-   }
+    public function emp(Request $request): string
+    {
+        if($request->method === 'POST'){
+            $properties = [
+                "Surname" => $request->all()["Surname"],
+                "Name" => $request->all()["Name"],
+                "Patronym" => $request->all()["Patronym"],
+                "Gender" => $request->all()["Gender"],
+                "Date_of_Birth" => $request->all()["Date_of_Birth"],
+                "Address" => $request->all()["Address"],
+                "Age" => $request->all()["Age"],
+            ];
 
-   //Если удалось аутентифицировать пользователя, то редирект
-   if (Auth::attempt($request->all())) {
-       app()->route->redirect('/hello');
-   }
-   //Если аутентификация не удалась, то сообщение об ошибке
-   return new View('site.hello', ['message' => 'hello working']);
-}
+            if (Employees::create($properties)) {
+                app()->route->redirect('/hello');
+            }
+        }
+        
+        $users = User::all();
+        $roles = role::all();
+        $subunits = Subunit::all();
+
+        return new View('site.emp', [
+            'subunits' => $subunits, 
+            'users' => $users, 
+            'roles' => $roles
+        ]);
+    }
+
+    public function subunit(Request $request): string
+    {
+        $subunits = Subunit::all();
+        if ($request->method === 'POST' && Subunit::create($request->all())) {
+            app()->route->redirect('/hello');
+        }
+
+        return new View('site.subunit', ['subunits' => $subunits]);
+    }
+
+
+    public function assign_an_employee(Request $request): string
+    {
+
+        //Если просто обращение к странице, то отобразить форму
+        if ($request->method === 'GET') {
+            return new View('site.assign_an_employee');
+        }
+
+        //Если удалось аутентифицировать пользователя, то редирект
+        if (Auth::attempt($request->all())) {
+            app()->route->redirect('/hello');
+        }
+        //Если аутентификация не удалась, то сообщение об ошибке
+        return new View('site.hello', ['message' => 'hello working']);
+    }
+
+    public function calculate(Request $request): string
+    {
+        $subunits = Subunit::all();
+
+        if (isset($request->all()["subdivision"])) {
+            $employess = Employees::where("Subunit_ID", $request->all()["subdivision"])->get();
+
+            return new View('site.calculate', [
+                'message' => 'hello working',
+                "subdivisions" => $subunits,
+                "employess" => $employess
+            ]);
+        }
+
+        return new View('site.calculate', [
+            'message' => 'hello working',
+            "subdivisions" => $subunits,
+        ]);
+    }
+    public function subunit_sel(Request $request): string
+    {
+        $subunits = Subunit::all();
+
+        if (isset($request->all()["subdivision"])) {
+            $employess = Employees::where("Subunit_ID", $request->all()["subdivision"])->get();
+
+            return new View('site.subunit_sel', [
+                'message' => 'hello working',
+                "subdivisions" => $subunits,
+                "employess" => $employess
+            ]);
+        }
+    }
 
 }

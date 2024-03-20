@@ -19,7 +19,7 @@ class Employees extends Model
         'Subunit_ID',
         'Role',
         'Users_ID',
-
+        "Age"
     ];
  
    use HasFactory;

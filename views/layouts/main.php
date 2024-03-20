@@ -9,114 +9,24 @@
 </head>
 <body>
 <header>
-    <style>
-       .nav {
-    background-color: black;
-    overflow: hidden;
-    height: 50px;
-    display: flex;
-}
 
-.nav a {
-    color: white;
-    text-align: center;
-    padding: 14px;
-    text-decoration: none;
-    
-}
-.nav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.nav a.active {
-    background-color: #666;
-}
-
-.main-content {
-    padding: 20px;
-    font-size: 1.2em;
-}
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
-            background-color:#323232;
-            align-items: center;
-            height: 500px;
-        }
-        form {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            height: 530px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 600px;
-            margin: 0 auto;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        input {
-            padding: 8px;
-            margin-bottom: 15px;
-            width: 100%;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .gender{
-            display: flex;
-            gap: 15px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: black;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        h2{
-            text-align: center;
-            color:white;
-        }
-        .column{
-            margin: 0 auto;
-        }
-        .btn_btn-primary{
-            margin-top:10px;
-        }
-       
-        
-    </style>
    <nav class="nav">
        <a href ="<?= app()->route->getUrl('/hello') ?>">Главная</a>
-       <?php
-       if (!app()->auth::check()):
-           ?>
-           <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
-           <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
-           
-       <?php
-       else:
-           ?>
-           
-           <a href="<?= app()->route->getUrl('/employees') ?>">Создать сотрудника</a>
-           <a href="<?= app()->route->getUrl('/subunit') ?>">Создать подразделение</a>
-           <a href="<?= app()->route->getUrl('/assign_an_employee') ?>">Прикрепить сотрудника</a>
-           <a href="<?= app()->route->getUrl('/calculate') ?>">Подсчет среднего возраста</a>
-           <a href="<?= app()->route->getUrl('/subunit_sel') ?>">Выбор по подразделениям</a>
-           <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->name ?>)</a>
-       <?php
-       endif;
-       ?>
+       
+       <?php if (app()->auth::check()): ?>
+            <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->login ?>)</a>
+            <?php if (app()->auth::role() == "admin"): ?>
+                <a href="<?= app()->route->getUrl('/employees') ?>">Создать сотрудника отдела</a>
+            <?php elseif (app()->auth::role() == "hr"): ?>
+                <a href="<?= app()->route->getUrl('/emp') ?>">Создать сотрудника</a>
+                <a href="<?= app()->route->getUrl('/subunit') ?>">Создать подразделение</a>
+                <a href="<?= app()->route->getUrl('/assign_an_employee') ?>">Прикрепить сотрудника</a>
+                <a href="<?= app()->route->getUrl('/calculate') ?>">Подсчет среднего возраста</a>
+                <a href="<?= app()->route->getUrl('/subunit_sel') ?>">Выбор по подразделениям</a>
+            <?php endif; ?>
+       <?php else: ?>
+            <a href ="<?= app()->route->getUrl('/login') ?>">Войти</a>
+       <?php endif; ?>
    </nav>
 </header>
 <main>

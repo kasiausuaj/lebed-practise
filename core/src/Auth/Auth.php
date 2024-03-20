@@ -19,11 +19,16 @@ class Auth
    }
 
    //Вход пользователя по модели
-   public static function login(IdentityInterface $user): void
-   {
-       self::$user = $user;
-       Session::set('id', self::$user->getId());
-   }
+    public static function login(IdentityInterface $user): void
+    {
+        self::$user = $user;
+        Session::set('id', self::$user->getId());
+    }
+
+    public static function role()
+    {
+        return self::$user::class::role(self::$user["id"]);
+    }
 
    //Аутентификация пользователя и вход по учетным данным
    public static function attempt(array $credentials): bool

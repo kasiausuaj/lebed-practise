@@ -3,19 +3,28 @@
     <div class='border border-5 border-dark center rounded-3'>
         <div>
             <h2 class="mb-4 text-center">Прикрепить<br> сотрудника</h2>
-            <div class="column">
-            <label><input type="text" name="surname"placeholder="Фамилия"></label>
-            <label><input type="text" name="name"placeholder="Имя"></label>
-            <label><input type="text" name="patronym" placeholder="Отчество"></label>
-                <label for="department" class="form-label">Подразделение</label>
-                <select name="department" id="department" class="form-select mb-3">
-                    <option value="none">Подразделение 1</option>
-                    <option value="man">Подразделение 2</option>
-                    <option value="woman">Подразделение 3</option>
+            <label class="user">
+      <select name="Users">
+         <option value="">Выберите пользователя</option>
+         <?php foreach($users as $user): ?>
+            <option value="<?= $user->getId() ?>"><?= $user->name ?></option>
+         <?php endforeach; ?>
+      </select>
+
+   </label>
+      </label>
+      <select name="Subunit_ID">
+         <option value="">Выберите подразделение</option>
+         <?php foreach($subunits as $subunit): ?>
+            <option value="<?= $subunit->getId() ?>"><?= $subunit->name ?></option>
+         <?php endforeach; ?>
+      </select>
+      
+   </label>
                 </select>
                 
             </div>
-            <button type="submit" class="btn_btn-primary">Прикрепить</button>
+            <button class="btn_btn-primary">Прикрепить</button>
         </div>
     </div>
 </form>

@@ -5,6 +5,7 @@ namespace Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Src\Auth\IdentityInterface;
+use App\Models\Role;
 
 class User extends Model implements IdentityInterface
 {
@@ -44,4 +45,13 @@ class User extends Model implements IdentityInterface
        return self::where(['login' => $credentials['login'],
            'password' => md5($credentials['password'])])->first();
    }
+
+   public static function role($id) {
+        $user = User::find($id); // Получаем пользователя по его ID
+
+        $role = $user->role;
+        
+        if ($role == 1) return "admin";
+        elseif ($role == 2) return "hr";
+    }
 }
