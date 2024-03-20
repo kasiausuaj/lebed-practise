@@ -9,5 +9,14 @@ return [
        'auth' => \Middlewares\AuthMiddleware::class,
        "admin" => \Middlewares\AdminMiddleware::class,
        "hr" => \Middlewares\HrMiddleware::class,
-   ]
+   ],
+   'validators' => [
+    'required' => \Validators\RequireValidator::class,
+    'unique' => \Validators\UniqueValidator::class
+   ],
+   'routeAppMiddleware' => [
+    'trim' => \Middlewares\TrimMiddleware::class,
+ ],
+ 
+
 ];
