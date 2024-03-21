@@ -17,5 +17,9 @@ class Subunit extends Model
         'Description',
     ];
  
+    public function getId(): int
+    {
+        return $this->ID;
+    }
 
 }

@@ -105,17 +105,15 @@ class Site
     public function emp(Request $request): string
     {
         if($request->method === 'POST'){
-            $properties = [
-                "Surname" => $request->all()["Surname"],
-                "Name" => $request->all()["Name"],
-                "Patronym" => $request->all()["Patronym"],
-                "Gender" => $request->all()["Gender"],
-                "Date_of_Birth" => $request->all()["Date_of_Birth"],
-                "Address" => $request->all()["Address"],
-                "Age" => $request->all()["Age"],
-            ];
+            $empData = $request->all();
+            
+            $dateOfBirth = $empData['Date_of_Birth'];
+            $birthDate = new \DateTime($dateOfBirth);
+            $currentDate = new \DateTime();
+            $age = $currentDate->diff($birthDate)->y;
 
-            if (Employees::create($properties)) {
+            $empData['Age'] = $age;
+            if (Employees::create($empData)) {
                 app()->route->redirect('/hello');
             }
         }
@@ -123,6 +121,8 @@ class Site
         $users = User::all();
         $roles = role::all();
         $subunits = Subunit::all();
+
+
 
         return new View('site.emp', [
             'subunits' => $subunits, 
@@ -162,19 +162,42 @@ class Site
     {
         $subunits = Subunit::all();
 
-        if (isset($request->all()["subdivision"])) {
-            $employees = Employees::where("Subunit_ID", $request->all()["subdivision"])->get();
+        function __calculateAge($employees){
+            $srvozrast = 0;
+            $i = 0;
+            foreach ($employees as $employee) {
+                $dateOfBirth = $employee->Date_of_Birth;
+                $birthDate = new \DateTime($dateOfBirth);
+                $currentDate = new \DateTime();
+                $age = $currentDate->diff($birthDate)->y;
+                $srvozrast += $age;
+                $i += 1;
+            }
+            if($i === 0){
+                return 0;
+            }
+            $srvozrast = $srvozrast / $i;
+            return $srvozrast;
+        }
+        
+        if($request->method === 'POST'){
+            $filter = $request->all()['Subunit_ID'];
+            if($filter){
+                $allemps = Employees::where('Subunit_ID', $filter)->get();
+            }
+            else {
+                $allemps = Employees::all();
 
-            return new View('site.calculate', [
-                'message' => 'hello working',
-                "subdivisions" => $subunits,
-                "employees" => $employees
-            ]);
+            }
+            $srvozrast = __calculateAge($allemps);
+
+            return new View('site.calculate', ['message' => 'hello working', 'subunits' => $subunits , 'srvozrast' => $srvozrast]);
         }
 
         return new View('site.calculate', [
             'message' => 'hello working',
-            "subdivisions" => $subunits,
+            'subunits' => $subunits,
+            'srvozrast' => ''
         ]);
     }
     public function subunit_sel(Request $request): string

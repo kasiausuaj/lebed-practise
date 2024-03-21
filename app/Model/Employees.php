@@ -15,11 +15,9 @@ class Employees extends Model
         'Gender',
         'Date_of_Birth',
         'Address',
-        'Position',
         'Subunit_ID',
-        'Role',
         'Users_ID',
-        "Age"
+        'Age'
     ];
  
    use HasFactory;
