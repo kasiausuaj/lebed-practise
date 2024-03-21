@@ -6,7 +6,7 @@
 
 <h2>Подсчет среднего возраста</h2>
 <form method="get" class='d-flex justify-content-center'>
-    
+<input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
    <div>
     
       <div>

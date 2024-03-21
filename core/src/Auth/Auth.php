@@ -70,5 +70,6 @@ public static function generateCSRF(): string
    return $token;
 }
 
+
 }
 

@@ -115,7 +115,7 @@ button:hover {
             <?php elseif (app()->auth::role() == "hr"): ?>
                 <a href="<?= app()->route->getUrl('/emp') ?>">Создать сотрудника</a>
                 <a href="<?= app()->route->getUrl('/subunit') ?>">Создать подразделение</a>
-                <a href="<?= app()->route->getUrl('/assign_an_employee') ?>">Прикрепить сотрудника</a>
+                <!-- <a href="<?= app()->route->getUrl('/assign_an_employee') ?>">Прикрепить сотрудника</a> -->
                 <a href="<?= app()->route->getUrl('/calculate') ?>">Подсчет среднего возраста</a>
                 <a href="<?= app()->route->getUrl('/subunit_sel') ?>">Выбор по подразделениям</a>
             <?php endif; ?>

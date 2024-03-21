@@ -1,4 +1,4 @@
-<h2>Прикрепить сотрудника</h2>
+<!-- <h2>Прикрепить сотрудника</h2>
 <form method="post" class='d-flex justify-content-center'>
     <div>
         <div class="assign">
@@ -22,4 +22,4 @@
         </div>
     </div>
 </form>
-
+ -->

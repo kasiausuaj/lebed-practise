@@ -6,12 +6,12 @@
 
 <h2>Выбор подразделения</h2>
 <form method="get" class='d-flex justify-content-center'>
-    
+<input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
    <div class='sel'>
 
       <div class="sel">
          <div class="sel">
-
+         
             <label>Подразделение</label>
             <select name="subdivision">
                <?php if (isset($subdivisions)): ?>

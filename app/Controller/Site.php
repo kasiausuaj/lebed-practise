@@ -142,21 +142,21 @@ class Site
     }
 
 
-    public function assign_an_employee(Request $request): string
-    {
+    // public function assign_an_employee(Request $request): string
+    // {
 
-        //Если просто обращение к странице, то отобразить форму
-        if ($request->method === 'GET') {
-            return new View('site.assign_an_employee');
-        }
+    //     //Если просто обращение к странице, то отобразить форму
+    //     if ($request->method === 'GET') {
+    //         return new View('site.assign_an_employee');
+    //     }
 
-        //Если удалось аутентифицировать пользователя, то редирект
-        if (Auth::attempt($request->all())) {
-            app()->route->redirect('/hello');
-        }
-        //Если аутентификация не удалась, то сообщение об ошибке
-        return new View('site.hello', ['message' => 'hello working']);
-    }
+    //     //Если удалось аутентифицировать пользователя, то редирект
+    //     if (Auth::attempt($request->all())) {
+    //         app()->route->redirect('/hello');
+    //     }
+    //     //Если аутентификация не удалась, то сообщение об ошибке
+    //     return new View('site.hello', ['message' => 'hello working']);
+    // }
 
     public function calculate(Request $request): string
     {

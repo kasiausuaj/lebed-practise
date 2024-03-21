@@ -2,7 +2,7 @@
 
 namespace Middlewares;
 
-use src\Auth\Auth;
+use Src\Auth\Auth;
 
 class HrMiddleware
 {
